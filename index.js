@@ -33,10 +33,10 @@ const storage = multer.diskStorage({
 
 
  
-// Initialize upload
+
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  limits: { fileSize: 5 * 1024 * 1024 }, 
   fileFilter: (req, file, cb) => {
       const fileTypes = /jpeg|jpg|png|gif/;
       const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
@@ -50,12 +50,13 @@ const upload = multer({
   }
 });
 
+const connectionString = process.env.DATABASE_URL;
+
 const db = new pg.Client({
-     user: "postgres",
-     host: "localhost",
-     database: "Books",
-     password: "123",
-     port: 5432,
+  connectionString,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 db.connect();
