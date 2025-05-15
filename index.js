@@ -50,16 +50,17 @@ const upload = multer({
   }
 });
 
-const connectionString = process.env.DATABASE_URL;
-
 const db = new pg.Client({
-  connectionString,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+  user: "postgres",
+  host: "localhost",
+  database: "Books",
+  password: "123",
+  port: 5432,
+  });
+  
+  db.connect();
+  
 
-db.connect();
 
 
 
