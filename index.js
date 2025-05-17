@@ -286,39 +286,58 @@ app.get("/card3",  (req, res) => {
 });
 
 app.post("/add_cart", async (req, res) => {
-  
-  const { product_name, product_author, product_price, product_image, quantity,
-   } = req.body;
+  const { product_name, product_author, product_price, product_image, quantity } = req.body;
 
-   if (!product_name || !product_author || !product_price || !product_image) {
+  if (!product_name || !product_author || !product_price || !product_image) {
     return res.status(400).send("Invalid product data");
-}
+  }
 
-   const quantityValue = parseInt(quantity) || 1;
+  const quantityValue = parseInt(quantity) || 1;
 
   let cart = req.session.cart || [];
 
   let existingItem = cart.find(item => item.product_name === product_name);
   if (existingItem) {
-      existingItem.quantity += 1;
-      
+    existingItem.quantity += 1;
   } else {
-      cart.push({
-          product_name,
-          product_author,
-          product_price: parseFloat(product_price),
-          product_image,
-           quantity: quantityValue,
-     
-          
-      });
-
-
+    cart.push({
+      product_name,
+      product_author,
+      product_price: parseFloat(product_price),
+      product_image,
+      quantity: quantityValue,
+    });
   }
-  
-  req.session.cart = cart;
-  req.session.message = `"Successfully Added To Cart!`; 
 
+  req.session.cart = cart;
+
+  
+  try {
+    
+    const existing = await pool.query(
+      "SELECT id, quantity FROM cart WHERE product_name = $1",
+      [product_name]
+    );
+
+    if (existing.rows.length > 0) {
+    
+      const newQty = existing.rows[0].quantity + quantityValue;
+      await pool.query(
+        "UPDATE cart SET quantity = $1 WHERE id = $2",
+        [newQty, existing.rows[0].id]
+      );
+    } else {
+      
+      await pool.query(
+        "INSERT INTO cart (product_name, product_author, product_price, product_image, quantity) VALUES ($1, $2, $3, $4, $5)",
+        [product_name, product_author, product_price, product_image, quantityValue]
+      );
+    }
+  } catch (error) {
+    console.error("Error updating cart in DB:", error);
+  }
+
+  req.session.message = "Successfully Added To Cart!";
   res.redirect("/");
 });
 
@@ -372,33 +391,50 @@ app.post("/place_order", async (req, res) => {
   }
 });
 
-app.get('/cart', (req, res) => {
-
-  const { product_price } = req.body;
-  
-  let cartCount = req.session.cart
-  ? req.session.cart.reduce((total, item) => total + item.quantity, 0)
-  : 0;
-
+app.get('/cart', async (req, res) => {
+  let cartCount = 0;
+  let cart = [];
+  let total = 0;
   const placeMessage = req.session.message;
 
-  let cart = req.session.cart || [];  
-  let total = cart.reduce((sum, item) => sum + item.product_price * item.quantity, 0); 
-  
-  res.render('cart', { cart, total, placeMessage, cartCount, createPost: "/style/assets/create-post.png",
-    product_price: parseFloat(product_price)
-    
+  try {
+    const result = await pool.query("SELECT * FROM cart");
+    cart = result.rows;
+
+    cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+    total = cart.reduce((sum, item) => sum + item.product_price * item.quantity, 0);
+
+  } catch (error) {
+    console.error("Error fetching cart from DB:", error);
+  }
+
+  res.render('cart', {
+    cart,
+    total,
+    placeMessage,
+    cartCount,
+    createPost: "/style/assets/create-post.png"
   });
 });
 
 
  
-app.post("/delete_cart", (req, res) => {
+app.post("/delete_cart", async (req, res) => {
   const index = parseInt(req.body.index);
-  
-  if (!isNaN(index)) {
-    req.session.cart.splice(index, 1);
+
+  try {
+   
+    const cartResult = await pool.query("SELECT * FROM cart ORDER BY id");
+    const cart = cartResult.rows;
+
+    if (!isNaN(index) && cart[index]) {
+      const itemId = cart[index].id;
+      await pool.query("DELETE FROM cart WHERE id = $1", [itemId]);
+    }
+  } catch (error) {
+    console.error("Error deleting cart item:", error);
   }
+
   res.redirect("/cart");
 });
 
