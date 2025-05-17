@@ -1,22 +1,41 @@
 import express from 'express';
-import pg from 'pg';
 import multer from 'multer';
 import path from 'path';
 import session from 'express-session';
+import fs from 'fs';
+import pkg from 'pg';
+const { Pool } = pkg;
+import dotenv from 'dotenv';
+
+dotenv.config({ path: './db.env' }); 
 
 
-
-
+const isProduction = process.env.NODE_ENV === "production"; 
 
 const app = express();
 const port = 3000;
+
+// PostgreSQL connection
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: isProduction ? { rejectUnauthorized: false } : false,
+});
+
+
 
 app.use(session({
   secret: 'bookstore-secret-key',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Set to true if using HTTPS
+  cookie: { secure: false } 
 }));
+
+
+
+const dir = './uploadImages';
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir);
+}
 
 const storage = multer.diskStorage({
       
@@ -29,10 +48,6 @@ const storage = multer.diskStorage({
        },
    
 });
-
-
-
- 
 
 const upload = multer({
   storage: storage,
@@ -50,20 +65,6 @@ const upload = multer({
   }
 });
 
-const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "Books",
-  password: "123",
-  port: 5432,
-  });
-  
-  db.connect();
-  
-
-
-
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -73,42 +74,23 @@ app.set("view engine", "ejs");
 
 app.use('/uploadImages', express.static('uploadImages'));
 
-
-
-
 let addedBook = [];
-
-let cartItems =   [{
-  
-      product_name: "",
-      author: "",
-      quantity: 1,
-      price: 27.30,
-      image: "/style/assets/atmosphere.jpg",
-
-
-    
-}];
-
-
-let cart = [];
-
 
 
 app.get("/", async (req, res) => {
   if (!req.session.cart) req.session.cart = [];
 
   
-  const result = await db.query(`SELECT * FROM cart`);
+  const result = await pool.query(`SELECT * FROM cart`);
   const products = result.rows;
 
-  const data = await db.query(`SELECT * FROM best_seller`);
+  const data = await pool.query(`SELECT * FROM best_seller`);
   const bestSeller = data.rows;
 
-  const dataTwo = await db.query(`SELECT * FROM best_seller2`);
+  const dataTwo = await pool.query(`SELECT * FROM best_seller2`);
   const bestSellerTwo = dataTwo.rows;
 
-  const dataThree = await db.query(`SELECT * FROM best_seller3`);
+  const dataThree = await pool.query(`SELECT * FROM best_seller3`);
   const bestSellerThree = dataThree.rows;
 
   let cartCount = req.session.cart
@@ -157,9 +139,6 @@ app.get("/", async (req, res) => {
     placeMessage,
     total,
     
-
-    
-
   });
 });
 
@@ -306,29 +285,30 @@ app.get("/card3",  (req, res) => {
 
 });
 
-
-
-
 app.post("/add_cart", async (req, res) => {
+  
   const { product_name, product_author, product_price, product_image, quantity,
    } = req.body;
 
-  if (!product_name || !product_author || !product_price || !product_image || quantity )  {
-      return res.status(400).send("Invalid product data");
-  }
+   if (!product_name || !product_author || !product_price || !product_image) {
+    return res.status(400).send("Invalid product data");
+}
+
+   const quantityValue = parseInt(quantity) || 1;
+
   let cart = req.session.cart || [];
+
   let existingItem = cart.find(item => item.product_name === product_name);
   if (existingItem) {
       existingItem.quantity += 1;
       
-  
   } else {
       cart.push({
           product_name,
           product_author,
           product_price: parseFloat(product_price),
           product_image,
-          quantity: 1,
+           quantity: quantityValue,
      
           
       });
@@ -364,7 +344,7 @@ app.post("/place_order", async (req, res) => {
 
   try {
 
-       await db.query(
+       await pool.query(
       `INSERT INTO place_order (product_name, product_author, product_price, product_image, quantity )
        VALUES ($1, $2, $3, $4, $5) RETURNING id`,
       [product_name, product_author, product_price, product_image, quantity]
@@ -392,23 +372,19 @@ app.post("/place_order", async (req, res) => {
   }
 });
 
-
-
 app.get('/cart', (req, res) => {
-  
-  const {product_price} = req.body;
 
+  const { product_price } = req.body;
+  
   let cartCount = req.session.cart
   ? req.session.cart.reduce((total, item) => total + item.quantity, 0)
   : 0;
-
 
   const placeMessage = req.session.message;
 
   let cart = req.session.cart || [];  
   let total = cart.reduce((sum, item) => sum + item.product_price * item.quantity, 0); 
   
-
   res.render('cart', { cart, total, placeMessage, cartCount, createPost: "/style/assets/create-post.png",
     product_price: parseFloat(product_price)
     
@@ -416,31 +392,16 @@ app.get('/cart', (req, res) => {
 });
 
 
- function removeFromCart(req, productName) {
+ 
+app.post("/delete_cart", (req, res) => {
+  const index = parseInt(req.body.index);
   
-    let cart = req.session.cart || [];
+  if (!isNaN(index)) {
+    req.session.cart.splice(index, 1);
+  }
+  res.redirect("/cart");
+});
 
-    cart = cart.filter(item => item.id !== productName);
-
-    req.session.cart = cart;
-
-
- }
-
-
-   app.post('/delete', async (req, res) => {
-
-   
-     const productName = req.body.product_name;
-
-     removeFromCart(req, productName);
-
-     
-     res.redirect("/cart");
-
-
-
-   });
 
 
 
@@ -462,7 +423,7 @@ app.get('/cart', (req, res) => {
         
         try {
 
-        const result = await db.query(
+        const result = await pool.query(
             "INSERT INTO books (your_name, book_title, author, opinion, books_image) VALUES ($1, $2 ,$3 , $4 , $5) RETURNING id",
             [name,title,author,opinion, newImage]
            );
@@ -472,7 +433,7 @@ app.get('/cart', (req, res) => {
 
             try {
                
-               await db.query(
+               await pool.query(
                 "INSERT INTO books_added (book_id , added_by) VALUES ($1 , $2) ",
                 [bookId,name]
                );

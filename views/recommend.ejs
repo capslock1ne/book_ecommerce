@@ -82,6 +82,7 @@
         <span id="cart-count"><%= cartCount %></span>
         
         </div> 
+
  
        <div class="user-icon">
             <img src="/style/assets/user.png" alt="image">
@@ -113,7 +114,7 @@
     
     
              
-                  <!-- Hidden form -->
+                  
    <!-- Hidden form -->
 <div class="form-container">
   <form id="uploadForm" action="/posts" method="POST" enctype="multipart/form-data" style="display: none;">
@@ -176,33 +177,21 @@
 
    </div>
  </div>
-        
-      
-      
-  
-    
-
-
-
 
           <div class="card-recommend-catalogue">
-                <% addedBook.forEach(post => { %>
-                  <div class="card-recommend" >
-                          
-             
-                   
+                <% addedBook.forEach(post=> { %>
+                  <div class="card-recommend" >                      
+                    <div class="card-body-recommend">                   
+                      <img src="<%= post.image %>" width="90">
 
-                  
-                    <div class="card-body">
-                   
-                      <h5 class="card-title"><span>Title:</span><%= post.title %></h5>
-                      <img src="<%= post.image %>" width="150">
-
-                       
+                      <h5 class="card-title-recommend"><span>Title:</span> <%= post.title %></h5>
                       <p> <span>Added by: </span> <%= post.name %></p>
                       <p><span>Opinion:</span> <%= post.opinion %></p>
                         <div class="find-btn">
                           <button type="submit" >Find <img src="<%= findBtn %>" alt=""></button>
+                       
+    
+                          </div>
                         </div>
                       
         
@@ -215,49 +204,7 @@
 
    </section>
 
-
-
-   
-<!-- footer
-
-<footer class="footer-home  py-4">
-  <div class="container">
-      <div class="row">
-        
-          <div class="col-md-4">
-              <h5>About Us</h5>
-              <p>Discover a world of books and endless stories. Your go-to place for literature lovers.</p>
-          </div>
-
-        
-          <div class="col-md-4">
-              <h5>Quick Links</h5>
-              <ul class="list-unstyled">
-                  <li><a href="#" class="text-light">Home</a></li>
-                  <li><a href="#" class="text-light">Categories</a></li>
-                  <li><a href="#" class="text-light">Best Sellers</a></li>
-                  <li><a href="#" class="text-light">Contact Us</a></li>
-              </ul>
-          </div>
-
-     
-          <div class="col-md-4 ">
-              <h5>Follow Us</h5>
-              <a href="#" class="text-light me-2"><i class="bi bi-facebook"></i>  </a>
-              <a href="#" class="text-light me-2"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="text-light me-2"><i class="bi bi-instagram"></i></a>
-
-          </div>
-      </div>
  
-       <div class="copy-right-home">
-
-
-      <p class="text-center mb-0">&copy; 2025 YourBooksWebsite. All Rights Reserved.</p>
-    </div>
-  </div>
-</footer>
--->  
 
    <script>
     document.getElementById("add-btn").addEventListener("click", function() {

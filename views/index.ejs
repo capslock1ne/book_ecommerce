@@ -174,7 +174,7 @@
               <h5 class="card-title"><%= book.product_name %></h5>
               <p class="author">By: <%= book.product_author %></p>
               <button class="card1 btn btn-primary full-btn" onclick="window.location.href='/card1';">FULL REVIEW >></button>
-              <p class="price"> $ <%= book.product_price %></p>
+              
         
               <form method="post" action="/add_cart">
                 <input type="hidden" name="product_name" value="<%= book.product_name %>" />
@@ -182,10 +182,10 @@
                 <input type="hidden" name="product_price" value="<%= book.product_price %>" />
                 <input type="hidden" name="product_image" value="<%= book.product_image %>" />
                 
-                <button type="submit" class="addToCart-b" aria-label="Add to Cart">
-                  <i class="bi bi-cart-fill" title="Add to Cart"></i>
+                <button type="submit" class="addToCart-b" aria-label="Add to Cart" title="Add to Cart">
+                    Add to Cart
                 </button>
-
+                <p class="price"> $ <%= book.product_price %></p>
               </form>
             </div>
           </div>
@@ -203,7 +203,7 @@
               <h5 class="card-title"><%= book.product_name %></h5>
               <p class="author">By: <%= book.product_author %></p>
               <button class="card1 btn btn-primary full-btn" onclick="window.location.href='/card3';">FULL REVIEW >></button>
-              <p class="price"> $ <%= book.product_price %></p>
+              
         
               <form method="post" action="/add_cart">
                 <input type="hidden" name="product_name" value="<%= book.product_name %>" />
@@ -211,9 +211,10 @@
                 <input type="hidden" name="product_price" value="<%= book.product_price %>" />
                 <input type="hidden" name="product_image" value="<%= book.product_image %>" />
                 
-                <button type="submit" class="addToCart-b" aria-label="Add to Cart">
-                  <i class="bi bi-cart-fill" title="Add to Cart"></i>
+                <button type="submit" class="addToCart-b" aria-label="Add to Cart" title="Add to Cart">
+                  Add to Cart
                 </button>
+                <p class="price"> $ <%= book.product_price %></p>
 
               </form>
             </div>
@@ -228,7 +229,7 @@
               <h5 class="card-title"><%= book.product_name %></h5>
               <p class="author">By: <%= book.product_author %></p>
               <button class="card1 btn btn-primary full-btn" onclick="window.location.href='/card2';">FULL REVIEW >></button>
-              <p class="price"> $ <%= book.product_price %></p>
+              
         
               <form method="post" action="/add_cart">
                 <input type="hidden" name="product_name" value="<%= book.product_name %>" />
@@ -236,9 +237,10 @@
                 <input type="hidden" name="product_price" value="<%= book.product_price %>" />
                 <input type="hidden" name="product_image" value="<%= book.product_image %>" />
                 
-                <button type="submit" class="addToCart-b" aria-label="Add to Cart">
-                  <i class="bi bi-cart-fill" title="Add to Cart"></i>
+                <button type="submit" class="addToCart-b" aria-label="Add to Cart" title="Add to Cart">
+                  Add to Cart
                 </button>
+                <p class="price"> $ <%= book.product_price %></p>
 
               </form>
             </div>
@@ -336,8 +338,8 @@
                       <input type="hidden" name="product_price" value="<%= product.product_price %>" />
                       <input type="hidden" name="product_image" value="<%= product.product_image %>" />
 
-                      <button type="submit" class="addToCart" aria-label="Add to Cart">
-                          <i class="bi bi-cart-fill" title="Add to Cart"></i>
+                      <button type="submit" class="addToCart" aria-label="Add to Cart" title="Add to Cart">
+                        Add to Cart
                       </button>
 
                   </form>
@@ -366,47 +368,40 @@
      
 
 <!-- footer-->
-
-<footer class="footer-home  py-4">
+<footer class="footer py-4">
   <div class="container">
-      <div class="row">
-          <!-- About Section -->
-          <div class="col-md-4">
-              <h5>About Us</h5>
-              <p>Discover a world of books and endless stories. Your go-to place for literature lovers.</p>
-          </div>
-
-          <!-- Navigation Links -->
-          <div class="col-md-4">
-              <h5>Quick Links</h5>
-              <ul class="list-unstyled">
-                  <li><a href="#" class="text-light">Home</a></li>
-                  <li><a href="#" class="text-light">Categories</a></li>
-                  <li><a href="#" class="text-light">Best Sellers</a></li>
-                  <li><a href="#" class="text-light">Contact Us</a></li>
-              </ul>
-          </div>
-
-          <!-- Social Media & Newsletter -->
-          <div class="col-md-4 ">
-              <h5>Follow Us</h5>
-              <a href="#" class="text-light me-2"><i class="bi bi-facebook"></i>  </a>
-              <a href="#" class="text-light me-2"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="text-light me-2"><i class="bi bi-instagram"></i></a>
-
-          </div>
+    <div class="row">
+      <!-- About Section -->
+      <div class="col-md-4">
+        <h5>About Us</h5>
+        <p>Discover a world of books and endless stories. Your go-to place for literature lovers.</p>
       </div>
- 
-       <div class="copy-right-home">
 
+      <!-- Navigation Links -->
+      <div class="col-md-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="/" class="text-light">Home</a></li>
+          <li><a href="/" class="text-light">Popular</a></li>
+          <li><a href="/" class="text-light">Best Offer</a></li>
+          <li><a href="/" class="text-light">Contact Us</a></li>
+        </ul>
+      </div>
 
+      <!-- Social Media & Newsletter -->
+      <div class="col-md-4">
+        <h5>Follow Us</h5>
+        <a href="#" class="text-light me-2"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-light me-2"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="text-light me-2"><i class="bi bi-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="copy-right">
       <p class="text-center mb-0">&copy; 2025 YourBooksWebsite. All Rights Reserved.</p>
     </div>
   </div>
 </footer>
-
-
-
 
  <script src="./cart.js"></script>
  <script>

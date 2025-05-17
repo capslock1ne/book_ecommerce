@@ -527,6 +527,7 @@
         font-size: 1rem;
         color: var(--text-color);
         margin-top: -0.5rem;
+        text-align: center;
     }
 
    
@@ -570,24 +571,7 @@
     }
    
 
-    .full-btn{
-        margin-left: 2rem;
-        padding: 0.5rem 1rem;
-        background: rgb(253, 190, 200);
-        font-size: 0.8rem;
-        margin-top: 1rem;
-        font-weight: bold;
-        border-radius: 4rem;
-        color: var(--text-color);
-        cursor: pointer;
-        transition: 0.3s all ease-in;
-        border: none;
-    }
-
-    .full-btn:hover{
-        background: rgb(248, 132, 151);
-        color: var(--text-color);
-      }
+   
 
       @media (max-width: 768px) {
         .card-catalogue {
@@ -1085,14 +1069,18 @@
     display: flex;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     flex-direction: column;
+    margin:  0 auto;
+    margin-top: 2rem;
     border-radius: 0.5rem;
     justify-content: center;
-    width: 100%;
-    height: 450px;
+    width: 800px !important;
+    height: 400px;
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
-;
+
 }
+
+
 
 @media (max-width: 768px) {
     .card-recommend {
@@ -1103,11 +1091,12 @@
 
 
 
-
-.card-recommend .card-body, .card-title {
-    text-align: center;
-    justify-content: center;
-    margin-top: 2rem;
+.card-body-recommend{
+    margin-left: 4rem;
+}
+.card-body-recommend .card-title-recommend {
+    justify-content: flex-start;
+    margin-top: 1rem;
     
   
 }
@@ -1251,10 +1240,12 @@ input[type=text], textarea {
 
   }
 
- 
-  
+  .delete-post-btn{
+    transition: 0.3s all ease-in;
+    background-color:transparent;
+  }
 
-/* Base responsive improvements */
+
 .card-recommend {
     width: 50%;
 }
@@ -1563,9 +1554,7 @@ input[type=text], textarea {
 
 .find-btn {
     display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
 }
 
 .find-btn button{
@@ -1823,6 +1812,10 @@ input[type=text], textarea {
 
 .card-catalogue .price {
     padding-top: 1rem;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .product-body {
@@ -1851,37 +1844,66 @@ input[type=text], textarea {
     font-size: 0.9rem;
 }
 
-.addToCart-b,
-.addToCart {
-    border: none;
-    margin: 0 auto;
-    text-align: center;
-    align-items: center;
-    background-color: transparent;
+.full-btn{
+    margin-left: 2rem;
+    padding: 0.5rem 1rem;
+    background: rgb(253, 190, 200);
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    border-radius: 4rem;
+    color: var(--text-color);
     cursor: pointer;
+    transition: 0.3s all ease-in;
+    border: none;
 }
+
+.full-btn:hover{
+    background: rgb(248, 132, 151);
+    color: var(--text-color);
+  }
 
 .addToCart-b {
-    float: right;
-    transform: translateY(-110%);
-    padding-right: 3rem;
+    position: relative;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    padding: 0.5rem 1.8rem;
+    background: transparent;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 4rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: 0.3s all ease-in;
+    border: 1px solid var(--secondary-color);
+    z-index: 2;
+}
+
+.addToCart-b:hover {
+    background: var(--secondary-color);
+    color: var(--text-color);
 }
 
 .addToCart {
-    transform: translateY(-80%);
+    position: relative;
+     margin: 0 auto;
+     padding: 0.5rem 1rem;
+     font-size: 0.8rem;
+     border: none;
+     background-color: var(--secondary-color);
+     font-weight: 600;
+     border-radius: 4rem;
+     transition: 0.3s all ease-in;
+     cursor: pointer;
 }
 
-.addToCart-b .bi-cart-fill,
-.addToCart .bi-cart-fill {
-    font-size: 2rem;
-    transition: 0.3s all ease-in;
-}
-
-.addToCart-b .bi-cart-fill:hover,
-.addToCart .bi-cart-fill:hover {
-    color: rgb(248, 132, 151);
+.addToCart:hover {
+    background-color: rgb(243, 104, 127);
+    color: rgb(14, 13, 13);
     transform: scale(1.1);
 }
+
+
 
 .product-body:hover .product-img {
     opacity: 0.3;
@@ -2121,6 +2143,11 @@ input[type=text], textarea {
     text-align: center;
     font-size: 1.2rem;
     color: #333;
+}
+
+.cart-item  .cart-author{
+    margin:  0 auto;
+    font-weight: 500;
 }
 
 .cart-item p span{
