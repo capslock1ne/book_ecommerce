@@ -141,7 +141,9 @@ app.get("/", async (req, res) => {
   });
 });
 
-
+ app.get("/", (req, res ) => {
+  res.send("index.ejs");
+ });
 
 app.get("/recommend", (req ,res) => { 
 
