@@ -12,7 +12,8 @@ dotenv.config({ path: './db.env' });
 const isProduction = process.env.NODE_ENV === "production"; 
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
 
 // PostgreSQL connection
 const pool = new Pool({
@@ -141,9 +142,6 @@ app.get("/", async (req, res) => {
   });
 });
 
- app.get("/", (req, res ) => {
-  res.send("index.ejs");
- });
 
 app.get("/recommend", (req ,res) => { 
 
@@ -476,6 +474,5 @@ app.post("/delete_cart", (req, res) => {
     
 
 app.listen(port, () => {
-     console.log(`Server running on http://localhost:${port}`);
-   });
-   
+  console.log(`Server running on http://localhost:${port}`);
+});
