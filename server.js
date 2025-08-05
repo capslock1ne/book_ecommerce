@@ -75,6 +75,9 @@ app.use('/uploadImages', express.static('uploadImages'));
 
 let addedBook = [];
 
+app.get("/", (req, res) => {
+  res.send("Homepage is working!");
+});
 
 app.get("/", async (req, res) => {
   if (!req.session.cart) req.session.cart = [];
@@ -140,6 +143,7 @@ app.get("/", async (req, res) => {
     
   });
 });
+
 
 
 app.get("/recommend", (req ,res) => { 
