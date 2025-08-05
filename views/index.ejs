@@ -72,8 +72,6 @@
           </div>
         </div>
       </nav>
-
-  
      
        <div class="search-icon">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 128 128">
@@ -128,7 +126,7 @@
                     </p>
                     
                     <div class="shop-btn">
-                        <a href="#"> <button>Shop now</button></a>
+                        <a href="#popular"> <button>Shop now</button></a>
                     </div>
                 </div>
 
@@ -230,7 +228,6 @@
               <p class="author">By: <%= book.product_author %></p>
               <button class="card1 btn btn-primary full-btn" onclick="window.location.href='/card2';">FULL REVIEW >></button>
               
-        
               <form method="post" action="/add_cart">
                 <input type="hidden" name="product_name" value="<%= book.product_name %>" />
                 <input type="hidden" name="product_author" value="<%= book.product_author %>" />
@@ -282,7 +279,6 @@
 
      <section class="news-letter">
       <h5 class="header-title">Stay updated?</h5>
-
       
       <div class="main-container">
          

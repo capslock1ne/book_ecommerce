@@ -64,7 +64,7 @@
     .create-post-icon {
         display: flex;
         align-items: center;
-        transform: translateX(10%);
+        transform: translateX(35%);
       }
       
       .create-post-icon a {
@@ -260,7 +260,7 @@
     align-items: center; 
     gap: 2rem; 
     padding: 5rem 20%;
-    margin-top: 2rem;
+    margin-top: -2rem;
     
 }
 
@@ -270,6 +270,7 @@
     max-width: 500px;
     text-align: left; 
     transform: translateY(20%);
+    margin-left: 5rem;
 }
 
 
@@ -277,14 +278,14 @@
     flex: 1; 
     display: flex;
     justify-content: flex-end;
-    transform: translateX(100%);
-    margin-top: -28rem;
+    transform: translateX(130%);
+    margin-top: -35rem;
 }
 
 
 .hero-image img {
     width: auto;
-    height: 450px;
+    height: 520px;
     object-fit: contain;
     filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.6));
 
@@ -293,14 +294,14 @@
 
 .home-title h3 {
     color: var(--secondary-color);
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
 
 .home-title h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     color: var(--text-color);
     font-weight: bold;
     margin: 2rem 0;
@@ -319,11 +320,13 @@
     background: rgb(248, 132, 151);
     color: var(--text2-color);
     border: none;
-    padding: 15px 44px;
+    padding: 15px 55px;
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
+    font-weight: bold;
     border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     transition: 0.3s all ease-in;
 }
 
@@ -1749,7 +1752,7 @@ input[type=text], textarea {
     justify-content: center; 
     align-items: center; 
     text-align: center;
-    transform: translateY(-380%);
+    transform: translateY(-450%);
 }
 
 .offer-title h1 {
@@ -1785,7 +1788,10 @@ input[type=text], textarea {
     height: auto;
     object-fit: cover;
     margin: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
     cursor: pointer;
+
 }
 
 .old-price {

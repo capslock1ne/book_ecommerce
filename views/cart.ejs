@@ -49,10 +49,10 @@
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#popular">Popular</a>
+              <a class="nav-link" href="/">Popular</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#best">Best Offer</a>
+              <a class="nav-link" href="/">Best Offer</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -98,7 +98,8 @@
           <% if (cart && cart.length > 0) { %>
             <% cart.forEach((item, index) => { %>
               <div class="cart-item">
-                <img src="<%= item.product_image %>" width="50">
+                <img class="card-img" src="<%= item.product_image %>" alt="Book cover" />
+
                 <h5 class="book-title"><%= item.product_name %></h5>
                 <span class="cart-author">By: <%= item.product_author %></span>
                 <p>Price: <span> $<%= item.product_price %></span></p>
