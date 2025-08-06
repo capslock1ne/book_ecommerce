@@ -75,9 +75,7 @@ app.use('/uploadImages', express.static('uploadImages'));
 
 let addedBook = [];
 
-app.get("/", (req, res) => {
-  res.send("Homepage is working!");
-});
+
 
 app.get("/", async (req, res) => {
   if (!req.session.cart) req.session.cart = [];
@@ -109,7 +107,7 @@ app.get("/", async (req, res) => {
   delete req.session.message;
 
  
-  res.render("index.ejs", {
+  res.render("index", {
     
     homeTitle: "RECOMMEND YOUR CHERISED BOOKS.",
     quote: "QUOTE OF THE DAY",
