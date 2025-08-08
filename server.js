@@ -20,6 +20,7 @@ const pool = new Pool({
   ssl: isProduction ? { rejectUnauthorized: false } : false,
 });
 
+console.log('DATABASE_URL:', process.env.DATABASE_URL);
 
 
 app.use(session({
