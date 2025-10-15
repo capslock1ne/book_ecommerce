@@ -431,7 +431,7 @@ app.post("/delete_cart", (req, res) => {
         try {
 
         const result = await pool.query(
-            "INSERT INTO books (your_name, book_title, author, opinion, books_image) VALUES ($1, $2 ,$3 , $4 , $5) RETURNING id",
+            "INSERT INTO books (your_name, book_title, author, opinion, book_image) VALUES ($1, $2 ,$3 , $4 , $5) RETURNING id",
             [name,title,author,opinion, newImage]
            );
 
