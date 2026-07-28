@@ -58,9 +58,8 @@
               <li class="nav-item">
                 <a class="nav-link" href="#best">Best Offer</a>
               </li>
-            
-
-                <li class="nav-item">
+              
+              <li class="nav-item">
                 <a class="nav-link" href="/about">About Us</a>
               </li>
 
@@ -96,265 +95,96 @@
 
   
 
-     <section class="home-page" >
+     
 
+<section class="about-section">
 
+    <div class="about-left">
 
-            <div class="home-container">
+        <p class="about-small-title">
+            ABOUT OUR BOOKSTORE
+        </p>
 
-              <div class="left-container">
-                <div class="home-title">
- 
-               
-                  <div class="sale-tag">
-                    <img src="<%= saleTag %>" alt="">
+        <h1>
+            More Than Books,
+            <span>We Share Stories.</span>
+        </h1>
 
-                  </div>
-              
-                 
+        <p>
+            Welcome to BookStore, your trusted online destination for
+            discovering books that inspire, educate, and entertain.
+            We believe every book has the power to change lives,
+            spark imagination, and build knowledge.
+        </p>
 
-                    <h3>FLASH SALE</h3>
-                    <h1> Get 30% Off For All Design Books!</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laborum quos 
-                        ut deserunt rerum voluptate veritatis excepturi, magnam nesciunt reiciendis quod odit dignissimos esse expedita non consequatur consectetur ipsa nam.
-                    </p>
-                    
-                    <div class="shop-btn">
-                        <a href="#popular"> <button>Shop now</button></a>
-                    </div>
-                </div>
+        <p>
+            Whether you're searching for bestselling novels,
+            educational resources, or timeless classics,
+            we make reading accessible through affordable prices
+            and a smooth shopping experience.
+        </p>
 
+        <a href="/" class="about-btn">
+            Browse Books
+        </a>
 
-              <div class="right-container">
-                  <div class="hero-image">
-                      <img src="<%= bookImg %>" alt="Book Image">
-                  </div>
-              </div>
-          
-          
-              </div>
-          </div>
-          
-            
-       
-     </section>
+    </div>
 
-   
+    <div class="about-right">
 
-   <!--POPULAR-->
-   
-   <section class="best-section" id="popular" >
+        <div class="about-image">
 
-      <div class="best-title">
-            
-         <h1> <img src="<%= loverImage %>" alt="lover">
-               <%= bestTitle %>
-            <img src="<%= loverImage %>" alt="lover">
-         </h1>
-         <hr class="best-hr">
-      </div>
+             <img  src= "<%= aboutImage %>" alt="">
 
-
-
-      <div class="card-catalogue">
-
-
-        <% best.forEach(book => { %>
-          <div class="card">
-            <img src="<%= book.product_image %>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><%= book.product_name %></h5>
-              <p class="author">By: <%= book.product_author %></p>
-              <button class="card1 btn btn-primary full-btn" onclick="window.location.href='/card1';">FULL REVIEW >></button>
-              
-        
-              <form method="post" action="/add_cart">
-                <input type="hidden" name="product_name" value="<%= book.product_name %>" />
-                <input type="hidden" name="product_author" value="<%= book.product_author %>" />
-                <input type="hidden" name="product_price" value="<%= book.product_price %>" />
-                <input type="hidden" name="product_image" value="<%= book.product_image %>" />
-                
-                <button type="submit" class="addToCart-b" aria-label="Add to Cart" title="Add to Cart">
-                    Add to Cart
-                </button>
-                <p class="price"> $ <%= book.product_price %></p>
-              </form>
-            </div>
-          </div>
-
-
+        </div>
 
         
-        <% }); %>
 
-
-        <% bestTwo.forEach(book => { %>
-          <div class="card">
-            <img src="<%= book.product_image %>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><%= book.product_name %></h5>
-              <p class="author">By: <%= book.product_author %></p>
-              <button class="card1 btn btn-primary full-btn" onclick="window.location.href='/card3';">FULL REVIEW >></button>
-              
-        
-              <form method="post" action="/add_cart">
-                <input type="hidden" name="product_name" value="<%= book.product_name %>" />
-                <input type="hidden" name="product_author" value="<%= book.product_author %>" />
-                <input type="hidden" name="product_price" value="<%= book.product_price %>" />
-                <input type="hidden" name="product_image" value="<%= book.product_image %>" />
-                
-                <button type="submit" class="addToCart-b" aria-label="Add to Cart" title="Add to Cart">
-                  Add to Cart
-                </button>
-                <p class="price"> $ <%= book.product_price %></p>
-
-              </form>
-            </div>
-          </div>
- 
-        <% }); %>
-
-        <% bestThree.forEach(book => { %>
-          <div class="card">
-            <img src="<%= book.product_image %>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><%= book.product_name %></h5>
-              <p class="author">By: <%= book.product_author %></p>
-              <button class="card1 btn btn-primary full-btn" onclick="window.location.href='/card2';">FULL REVIEW >></button>
-              
-              <form method="post" action="/add_cart">
-                <input type="hidden" name="product_name" value="<%= book.product_name %>" />
-                <input type="hidden" name="product_author" value="<%= book.product_author %>" />
-                <input type="hidden" name="product_price" value="<%= book.product_price %>" />
-                <input type="hidden" name="product_image" value="<%= book.product_image %>" />
-                
-                <button type="submit" class="addToCart-b" aria-label="Add to Cart" title="Add to Cart">
-                  Add to Cart
-                </button>
-                <p class="price"> $ <%= book.product_price %></p>
-
-              </form>
-            </div>
-          </div>
-
-        <% }); %>
-   
-          </div>      
-      </div>
-
-   </section>
-
-
-
-
-
-  <!--QUOTE-->
-
-  <section class="quote">
-
-   <div class="quotes">
-    <h2> "The more that you read,<br> the more  things you will know."<br>- Dr. Seuss</h2>
-
-    <img src="<%= image %>" alt="image">
- </div>
-
-
-</div>
+    </div>
 
 </section>
 
-   <% if (flashMessage) { %>
-    <div class="alert alert-success alert-dismissible fade show position-fixed top-50 start-50 translate-middle-x mt-3" >
-      <%= flashMessage %>
+
+<section class="mission">
+
+    <div class="about-card">
+
+        <h2> <img src= "<%= missionIcon %>" alt=""> Our Mission</h2>
+
+        <p>
+            To connect readers with books they love while providing
+            excellent customer service and affordable pricing.
+        </p>
+
     </div>
-  <% } %>
 
-   <!--NEWS LETTER-->
+    <div class="about-card">
 
-     <section class="news-letter">
-      <h5 class="header-title">Stay updated?</h5>
-      
-      <div class="main-container">
-         
-        <div class="hero-hand">
-          <img src="<%= girlHand %>" alt="">
-        </div>
-        
-        <div class="left-content">
-          <h1>Subscribe To Our
-            <br> Newsletter
-          </h1>
-        </div>
+        <h2> <img src= "<%= deliveryIcon %>" alt=""> Fast Delivery</h2>
 
-        <div class="right-content">
-          <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit minima illo possimus. Possimus reiciendis ad saepe enim voluptate, dolor ea fuga nulla laborum quos aperiam unde quod excepturi, autem similique.</p>
-          <form id="subscribe-form">
-            <div class="input-group">
-                <input type="email" id="email" placeholder="Enter your email" required>
-                <button type="submit" class="subscribe-button"> <img src="<%= sendBtn %>" title="Send"></button>
-            </div>
-        </form>
-        </div>
-      </div>
+        <p>
+            We carefully package every order and deliver your books
+            safely to your doorstep.
+        </p>
+
+    </div>
+
+    <div class="about-card">
+
+        <h2> <img src= "<%= starIcon %>" alt=""> Quality Collection</h2>
+
+        <p>
+            From bestselling novels to educational materials,
+            we continuously expand our catalog.
+        </p>
+
+    </div>
+
+</section>
 
 
 
-     </section>
-
-
-     <!--Best OFFER-->
-
-      <section class="best-offer" id="best">
-         
-        <div class="offer-title">
-          <img src="<%= saleIcon %>" class="sale-icon"  alt="">
-          <h1>  Best Deals <span> 30% OFF </span></h1>
-          <img src="<%= saleIcon %>" class="sale-icon" alt="">
-        </div>
      
-        <div class="product-catalogue">
-          
-          <% products.forEach(product => { %>
-            <div class="product">
-              <div class="product-body">
-        
-                <img src="<%= product.product_image %>" class="product-img" alt="">
-                
-                <div class="cart-icon-p">
-                  
-                  <form method="post" action="/add_cart">
-                      <input type="hidden" name="product_name" value="<%= product.product_name %>" />
-                      <input type="hidden" name="product_author" value="<%= product.product_author %>" />
-                      <input type="hidden" name="product_price" value="<%= product.product_price %>" />
-                      <input type="hidden" name="product_image" value="<%= product.product_image %>" />
-
-                      <button type="submit" class="addToCart" aria-label="Add to Cart" title="Add to Cart">
-                        Add to Cart
-                      </button>
-
-                  </form>
-                </div>
-
-                <h5><%= product.product_name %></h5>
-                  <span class="author">By: <%= product.product_author %>
-                  </span>
-                  
-                  <p>
-                    <del class="old-price">$<%= product.product_oldprice %></del> 
-                    <span class="new-price">$<%= product.product_price %></span>
-                </p>
-              </div>
-            </div>
-          <% }); %>
-        </div>
-        
-        <!--
-        <div class="view-all">
-          <button> View all products <img src="<%= viewBtn %>" alt=""></button>
-        </div>
-        -->
-      </section>
-
      
 
 <!-- footer-->
