@@ -89,7 +89,7 @@
     if (!req.session.cart) req.session.cart = [];
 
     
-    const result = await pool.query(`SELECT * FROM public.morebooks`);
+    const result = await pool.query(`SELECT * FROM morebooks`);
     const products = result.rows;
 
     const data = await pool.query(`SELECT * FROM best_seller`);
