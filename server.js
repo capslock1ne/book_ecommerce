@@ -316,17 +316,17 @@
 
         
 
-    app.get("/api/moreBooks", async (req, res) => {
+    app.get("/api/morebooks", async (req, res) => {
       
         try {
            const [morebooks] = await Promise.all([
-            pool.query("SELECT * FROM moreBooks")
+            pool.query("SELECT * FROM morebooks")
           ]);
 
           res.json({ moreBooks: morebooks.rows });
           
         } catch (error) {
-          console.error("DB ERROR /api/moreBooks:", error);
+          console.error("DB ERROR /api/morebooks:", error);
           res.status(500).json({
             error: "Failed to fetch more books",
             detail: error.message,
