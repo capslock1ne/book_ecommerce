@@ -345,7 +345,7 @@
       return res.status(400).send("Invalid product data");
   }
 
-    const quantityValue = parseInt(quantity) || 1;
+    const quantityValue = parseInt(quantity, 10) || 1;
 
     let cart = req.session.cart || [];
 
