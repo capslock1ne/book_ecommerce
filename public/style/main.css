@@ -2359,8 +2359,10 @@ input[type=text], textarea {
     display:flex;
     justify-content:center;
     gap:30px;
-    padding:70px 10%;
-    background:#a0a0a0;
+    padding: 70px 10%;
+    background:#ecebeb;
+    
+    
 }
 
 .about-card{
@@ -2391,7 +2393,7 @@ input[type=text], textarea {
     position:absolute;
     width:380px;
     height:380px;
-    background:#f37c90;
+    background:#1a1919;
     opacity:.12;
     border-radius:55% 45% 60% 40%;
     top:-30px;
@@ -2404,7 +2406,7 @@ input[type=text], textarea {
     position:absolute;
     width:150px;
     height:150px;
-    background:#ffd6e0;
+    background:#111111;
     border-radius:50%;
     right:-40px;
     bottom:-40px;
